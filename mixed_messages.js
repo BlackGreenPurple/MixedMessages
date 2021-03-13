@@ -1,13 +1,24 @@
-//arrays filled with strings used for message generation
-const _astroSign = ["Aries ", "Taurus ", "Gemini ", "Cancer ", "Leo ", "Virgo ", "Libra ", "Scorpio ", "Sagittarius ", "Capricornus ", "Aquarius ", "Pisces "];
-const _badOrGood = ["can expect good luck ", "can expect bad luck "];
-const _areaOfEffect = ["in personal life.", "in family affairs.", "in job affairs.", "in studies."];
+//function for randon number generation
+function randomNumberGen(length){
+    return Math.floor(Math.random()*length);
+}
+
+//object filled with strings used for message generation
+const zodiac = {
+astroSign: ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricornus", "Aquarius", "Pisces"],
+badOrGood: ["can expect good luck", "can expect bad luck"],
+areaOfEffect: ["in personal life.", "in family affairs.", "in job affairs.", "in studies."]
+};
+
+//Array for the final message
+let forecast = [];
 
 //function to generate a message
-function randomize(){
-    const sign = _astroSign[Math.floor(Math.random()*_astroSign.length)];
-    const luck = _badOrGood[Math.floor(Math.random()*_badOrGood.length)];
-    const area = _areaOfEffect[Math.floor(Math.random()*_areaOfEffect.length)];
-    return sign+luck+area;
+function generateMessage(){
+    for (let property in zodiac) {
+        let indexOfProp = randomNumberGen(zodiac[property].length);
+        forecast.push(zodiac[property][indexOfProp]);
+    }
 }
-console.log(randomize());
+generateMessage();
+console.log(forecast.join(' '));
